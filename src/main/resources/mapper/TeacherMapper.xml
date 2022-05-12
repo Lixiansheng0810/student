@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.li.student.mapper.TeacherMapper">
+
+
+    <resultMap id="ClassesAndStudentResultMap" type="com.li.student.pojo.Teacher">
+        <id property="id" column="id"></id>
+        <result property="teachername" column="teachername"></result>
+        <collection property="students" ofType="com.li.student.pojo.Student">
+            <result property="name" column="name"></result>
+            <result property="age" column="age"></result>
+            <result property="sex" column="sex"></result>
+            <result property="money" column="money"></result>
+        </collection>
+    </resultMap>
+    <!--List<Classes> getClassesAndStudent();-->
+    <select id="getClassesAndStudent" resultMap="ClassesAndStudentResultMap">
+        select * from teachers left join student on teachers.id = student.classid
+    </select>
+</mapper>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 主界面 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幼儿园收费系统</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            background: url(img/tu.jpg) repeat center top;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .caozuo form{
+            float: left;
+            /*border: 1px solid black;*/
+        }
+        .caozuo form:nth-of-type(1){
+           margin-left: 50px;
+        }
+        .caozuo form:nth-of-type(2){
+            margin-left: 10px;
+        }
+        .btn{
+            margin-right: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            function getId(id) {
+                return document.getElementById(id);
+            }
+            function getClass(classname) {
+                return document.getElementsByClassName(classname);
+            }
+            let url="http://localhost:8080";
+
+            let btn = getId('btn');
+            let name = getClass('student')
+
+            btn.addEventListener('click', function(event) {
+                event.preventDefault();
+                if(name[0].value == ""){
+                        alert("请输入内容在搜索");
+                }else{
+                    window.location.href=url+"/query/"+name[0].value;
+                }
+
+            })
+
+            // let bbb=getId("bbb");
+            // bbb.addEventListener('click',function (){
+            //     axios.get('/jiaoshi')
+            //         .then(function (response) {
+            //             console.log(response);
+            //         })
+            //         .catch(function (error) {
+            //             console.log(error);
+            //         });
+            // })
+        }
+    </script>
+</head>
+<body>
+<div class="container table-responsive text-center shadow-lg">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <span class="navbar-brand">
+                
+            </span>
+
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link">学生列表</a>
+                </li>
+            </ul>
+            <form class="form-inline" action="" method="get">
+                <input class="form-control mr-sm-2 student" type="search" placeholder="" aria-label="Search" name="name">
+                <button id="btn" class="btn btn-outline-light my-2 my-sm-0" type="submit">搜索</button>
+            </form>
+            <form class="form-inline" th:action="@{/banji}" method="POST">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">教师</button>
+            </form>
+        </div>
+    </nav>
+
+    <table class="table table-hover" border="1">
+        <thead class="thead-dark">
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>班级</th>
+            <th>费用</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="student:${students}">
+            <form th:action="@{/login}" method="POST">
+                <td width="200" th:text="${student.name}"></td>
+                <td width="100" th:text="${student.age}"></td>
+                <td width="100" th:text="${student.sex}"></td>
+                <td width="100" th:text="${student.classid}"></td>
+                <td width="150" th:text="${student.money}"></td>
+            </form>
+            <td class="caozuo" width="200">
+                <form th:action="@{'/huixian/'+${student.id}}">
+                    <button type="submit" class="btn btn-primary">编辑</button>
+                </form>
+                <form th:action="@{'/delete/'+${student.id}}">
+                    <button type="submit" class="btn btn-danger">删除</button>
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <form th:action="@{/add}" method="POST">
+
+                <td>
+                    <input class="form-control" name="name">
+                </td>
+                <td>
+                    <input class="form-control" type="number" name="age">
+                </td>
+                <td>
+                    <select class="form-control" name="sex">
+                        <option value="男"></option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </td>
+                <td>
+                    <input class="form-control" name="classid">
+                </td>
+                <td>
+                    <input class="form-control" name="money">
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-success">添加新学生</button>
+                </td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

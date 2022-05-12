@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 主界面 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幼儿园收费系统</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        window.onload = function() {
+            function getId(id) {
+                return document.getElementById(id);
+            }
+            function getClass(classname) {
+                return document.getElementsByClassName(classname);
+            }
+
+               axios.get('/jiaoshi')
+                    .then( (res)=> {
+                        let {data:{data}}=res;
+
+                        let html=``;
+
+                        for (let i = 0; i < data.length; i++) {
+                            let obj=data[i];
+                            html+=`<tr>
+                            <td width="200" >${obj.id}</td>
+                            <td width="100" >${obj.teachername}</td>
+                            <td width="300" >${obj.students.length}</td>
+                            </tr>`
+                        }
+
+
+                        let tbody=getClass("tb");
+
+                        tbody[0].innerHTML=html;
+
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+        }
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            background: url(img/tu.jpg) repeat center top;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container table-responsive text-center shadow-lg">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <span class="navbar-brand">
+                
+            </span>
+
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link">教师列表</a>
+                </li>
+            </ul>
+            <form class="form-inline" th:action="@{/fanhui}" method="POST">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">返回</button>
+            </form>
+        </div>
+    </nav>
+
+    <table class="table table-hover" border="1">
+        <thead class="thead-dark">
+        <tr>
+            <th>班级</th>
+            <th>教师</th>
+            <th>学生人数</th>
+        </tr>
+        </thead>
+        <tbody class="tb">
+
+        <tr th:each="teachers:${teacherList}">
+            <td width="200" th:text="${teachers.teachername}"></td>
+            <td width="100" th:text="${teachers.id}"></td>
+            <td width="300" th:text="${teachers.getStudents()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
