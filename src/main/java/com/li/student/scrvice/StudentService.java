@@ -11,14 +11,35 @@ import java.util.List;
  * @create 2022-05-04-14:14
  */
 public interface StudentService extends IService<Student> {
+    /**
+     * 查询所有学生
+     * @return
+     */
     List<Student> findList();
 
+    /**
+     * 添加学生
+     * @param student
+     */
     void addStudent(Student student);
 
+    /**
+     * 通过id获取学生信息
+     * @param id
+     * @return
+     */
     Student getStudentById(Integer id);
 
+    /**
+     * 通过id删除学生信息
+     * @param id
+     */
     void deleteStudentById(Integer id);
 
+    /**
+     * 修改信息
+     * @param student
+     */
     void editStudentById(Student student);
 
     /**

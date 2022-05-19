@@ -11,6 +11,10 @@ import java.util.List;
  */
 public interface TeacherService extends IService<Teacher> {
 
-    List<Teacher> getClassesAndStudent();
+    /**
+     * 多表联查
+     * @return
+     */
+    List<Teacher> getTeachersAndStudent();
 
 }

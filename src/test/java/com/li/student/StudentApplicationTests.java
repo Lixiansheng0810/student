@@ -44,8 +44,8 @@ class StudentApplicationTests {
 
 
     @Test
-    void selectClassesAndStudent(){
-        List<Teacher> teacherList = teacherMapper.getClassesAndStudent();
+    void selectTeachersAndStudent(){
+        List<Teacher> teacherList = teacherMapper.getTeachersAndStudent();
         teacherList.forEach(classes -> System.out.println(classes));
         System.out.println(teacherList.get(0).getStudents().get(1).getName());
     }

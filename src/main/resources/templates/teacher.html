@@ -9,9 +9,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         window.onload = function() {
-            function getId(id) {
-                return document.getElementById(id);
-            }
+
             function getClass(classname) {
                 return document.getElementsByClassName(classname);
             }
@@ -19,9 +17,7 @@
                axios.get('/jiaoshi')
                     .then( (res)=> {
                         let {data:{data}}=res;
-
                         let html=``;
-
                         for (let i = 0; i < data.length; i++) {
                             let obj=data[i];
                             html+=`<tr>
@@ -31,11 +27,8 @@
                             </tr>`
                         }
 
-
                         let tbody=getClass("tb");
-
                         tbody[0].innerHTML=html;
-
 
                     })
                     .catch(function (error) {
@@ -86,11 +79,6 @@
         </thead>
         <tbody class="tb">
 
-        <tr th:each="teachers:${teacherList}">
-            <td width="200" th:text="${teachers.teachername}"></td>
-            <td width="100" th:text="${teachers.id}"></td>
-            <td width="300" th:text="${teachers.getStudents()}"></td>
-        </tr>
         </tbody>
     </table>
 </div>

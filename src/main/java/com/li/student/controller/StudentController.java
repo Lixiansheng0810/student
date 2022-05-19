@@ -101,10 +101,8 @@ public class StudentController {
         return "redirect:/home.html";
     }
 
-    @RequestMapping("/banji")
-    public String banji(Model model){
-        List<Teacher> teacherList = teacherService.getClassesAndStudent();
-        model.addAttribute("classesList", teacherList);
+    @RequestMapping("/teacher")
+    public String teacher(){
         return "teacher";
     }
 

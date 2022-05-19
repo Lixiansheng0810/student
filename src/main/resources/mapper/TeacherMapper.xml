@@ -5,7 +5,7 @@
 <mapper namespace="com.li.student.mapper.TeacherMapper">
 
 
-    <resultMap id="ClassesAndStudentResultMap" type="com.li.student.pojo.Teacher">
+    <resultMap id="TeachersAndStudentResultMap" type="com.li.student.pojo.Teacher">
         <id property="id" column="id"></id>
         <result property="teachername" column="teachername"></result>
         <collection property="students" ofType="com.li.student.pojo.Student">
@@ -15,8 +15,8 @@
             <result property="money" column="money"></result>
         </collection>
     </resultMap>
-    <!--List<Classes> getClassesAndStudent();-->
-    <select id="getClassesAndStudent" resultMap="ClassesAndStudentResultMap">
+    <!--List<Teacher> getTeachersAndStudent();-->
+    <select id="getTeachersAndStudent" resultMap="TeachersAndStudentResultMap">
         select * from teachers left join student on teachers.id = student.classid
     </select>
 </mapper>

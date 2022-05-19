@@ -21,8 +21,8 @@ public class TeacherController {
 
 
     @RequestMapping("/jiaoshi")
-    public Result banji(){
-        List<Teacher> teacherList = teacherService.getClassesAndStudent();
+    public Result jiaoshi(){
+        List<Teacher> teacherList = teacherService.getTeachersAndStudent();
 //        model.addAttribute("classesList",classesList);
         return Result.success(teacherList);
     }

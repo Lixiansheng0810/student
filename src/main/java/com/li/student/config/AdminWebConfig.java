@@ -11,11 +11,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class AdminWebConfig implements WebMvcConfigurer{
+    /**
+     * 添加拦截器
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")     //拦截所有请求包括静态资源
                 .excludePathPatterns("/","/tologin","/login","/toregister","/register","/css/**","/img/**","/js/**");    //放行请求
-
     }
 }

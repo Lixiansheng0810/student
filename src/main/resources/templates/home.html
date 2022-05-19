@@ -55,16 +55,6 @@
 
             })
 
-            // let bbb=getId("bbb");
-            // bbb.addEventListener('click',function (){
-            //     axios.get('/jiaoshi')
-            //         .then(function (response) {
-            //             console.log(response);
-            //         })
-            //         .catch(function (error) {
-            //             console.log(error);
-            //         });
-            // })
         }
     </script>
 </head>
@@ -86,7 +76,7 @@
                 <input class="form-control mr-sm-2 student" type="search" placeholder="" aria-label="Search" name="name">
                 <button id="btn" class="btn btn-outline-light my-2 my-sm-0" type="submit">搜索</button>
             </form>
-            <form class="form-inline" th:action="@{/banji}" method="POST">
+            <form class="form-inline" th:action="@{/teacher}" method="POST">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">教师</button>
             </form>
         </div>

@@ -13,6 +13,6 @@ import java.util.List;
 @Repository
 public interface TeacherMapper extends BaseMapper<Teacher> {
 
-    List<Teacher> getClassesAndStudent();
+    List<Teacher> getTeachersAndStudent();
 
 }

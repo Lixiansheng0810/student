@@ -20,8 +20,8 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
     private TeacherMapper teacherMapper;
 
     @Override
-    public List<Teacher> getClassesAndStudent() {
-        List<Teacher> teacherList = teacherMapper.getClassesAndStudent();
+    public List<Teacher> getTeachersAndStudent() {
+        List<Teacher> teacherList = teacherMapper.getTeachersAndStudent();
         return teacherList;
     }
 }
