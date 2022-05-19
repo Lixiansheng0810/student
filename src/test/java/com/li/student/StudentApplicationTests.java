@@ -50,7 +50,4 @@ class StudentApplicationTests {
         System.out.println(teacherList.get(0).getStudents().get(1).getName());
     }
 
-
-
-
 }
